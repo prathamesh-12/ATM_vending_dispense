@@ -1,0 +1,55 @@
+<div class="container dispense-wrapper" ng-controller="LimitedCoinsCtrl as vm">
+	<h3 class="custom-page-heading">{{vm.displayString}}</h3>
+	<hr class="custom-hr"></hr>
+
+	<div class="row custom-row">
+		<form class="form-inline" novalidate name="vm.unlimitedCoinsForm">
+			<div class="form-group" ng-class="{'has-error' : vm.isFormValid }">
+				<label for="amount">Enter Amount:</label>
+				<input type="text" class="form-control" ng-model="vm.amount" placeholder="Numbers Only" numeric required>
+			</div>
+			<button type="button" class="btn btn-primary" ng-click="vm.submitAmount(vm.amount)">Submit</button>
+			<button type="button" class="btn btn-default" ng-click="vm.clearAmount()" ng-disabled="!vm.amount.length">Clear</button>
+			<div ng-hide="!vm.isFormValid" class="custom-error amount-reqd-error">Please enter some amount</div>
+		</form>
+		<div class="custom-error" ng-show="vm.isAmountExceeds">
+			This amount exceeds the available dispense limit that is {{vm.maxAllowedAmount}}
+		</div>
+	</div>
+
+	<div class="row custom-row" ng-show="vm.isValidated">
+		<hr class="custom-hr"></hr>
+		<div class="dispense-breakup-heading">Available Currency Denominations</div>
+		<div class="dispensed-amount-wrapper">
+			<!-- <div>No of 100's: <span>{{vm[100]}}</span></div> -->
+
+			<table class="table currency-dispensed-table limited-table">
+				<tbody>
+					<tr ng-repeat="val in vm.currencyDenomArray">
+						<td>{{val}}</td>
+						<td>*</td>
+						<td>{{vm.count[$index]}}</td>
+						<td>=</td>
+						<td>{{val*vm.count[$index]}}</td>
+						<td>=></td>
+						<td>No of {{val}}'s note(s) available : 
+							<span class="custom-td-text">{{vm.availableCurrencyArray[$index]}}</span>
+							out of total
+							<span class="custom-td-text">{{vm.defaultAvailableCurrency[$index]}}</span> 
+							notes</td>
+					</tr>
+				</tbody>	
+				<tfoot>
+					<tr>
+					<td colspan="3">Total</td>
+					<!-- <td>*</td>
+					<td>{{vm[1]}}</td> -->
+					<td>=</td>
+					<td>{{vm.totalAmount}}</td>
+				</tr>
+				</tfoot>
+			</table>
+			<hr class="custom-hr">
+		</div>
+	</div>
+</div>
