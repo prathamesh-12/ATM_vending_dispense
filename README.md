@@ -1,12 +1,17 @@
-# atm-dispense
+# ATM-Vending
 
 This project is generated with [yo angular generator](https://github.com/yeoman/generator-angular)
 version 0.16.0.
 
 ## Build & development
 
-Run `grunt` for building and `grunt serve` for preview.
 
-## Testing
+Need to install genearator-angular and generator-karma
+This app is built using gulp and gulp dependencies
 
-Running `grunt test` will run the unit tests with karma.
+## Run server
+Go to the root of the downloaded/clined folder
+run npm install to load dependencies
+Need to run : gulp serve to start the server and launch the UI
+
+
